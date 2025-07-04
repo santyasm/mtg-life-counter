@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "mtglifecounter.app"
-               BlueprintName = "mtglifecounter"
-               ReferencedContainer = "container:mtglifecounter.xcodeproj">
+               BuildableName = "MtgLifeCounter.app"
+               BlueprintName = "MtgLifeCounter"
+               ReferencedContainer = "container:MtgLifeCounter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "mtglifecounterTests.xctest"
-               BlueprintName = "mtglifecounterTests"
-               ReferencedContainer = "container:mtglifecounter.xcodeproj">
+               BuildableName = "MtgLifeCounterTests.xctest"
+               BlueprintName = "MtgLifeCounterTests"
+               ReferencedContainer = "container:MtgLifeCounter.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "mtglifecounter.app"
-            BlueprintName = "mtglifecounter"
-            ReferencedContainer = "container:mtglifecounter.xcodeproj">
+            BuildableName = "MtgLifeCounter.app"
+            BlueprintName = "MtgLifeCounter"
+            ReferencedContainer = "container:MtgLifeCounter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "mtglifecounter.app"
-            BlueprintName = "mtglifecounter"
-            ReferencedContainer = "container:mtglifecounter.xcodeproj">
+            BuildableName = "MtgLifeCounter.app"
+            BlueprintName = "MtgLifeCounter"
+            ReferencedContainer = "container:MtgLifeCounter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
