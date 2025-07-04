@@ -11,7 +11,7 @@ export const defaultTheme = {
         manaSymbols: {
             red: '#D93833',
             black: '#1E1E1E',
-            green: '#2C895',
+            green: '#2C8950',
             blue: '#1071A5',
             white: '#CCCCBA',
         }
