@@ -1,14 +1,12 @@
-import { Slot } from "expo-router";
 
-export const unstable_settings = {
-    // Ensure any route can link back to `/`
-    initialRouteName: 'Mtg',
-};
+import { defaultTheme } from "@/styles/themes/default";
+import { Stack } from "expo-router";
+import { ThemeProvider } from "styled-components/native";
 
 export default function Layout() {
     return (
-        <>
-            <Slot />
-        </>
-    );
+        <ThemeProvider theme={defaultTheme}>
+            <Stack screenOptions={{ headerShown: false }} />
+        </ThemeProvider>
+    )
 }
