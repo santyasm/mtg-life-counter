@@ -1,8 +1,5 @@
 import { defaultTheme } from "@/styles/themes/default";
-import { Dimensions } from "react-native";
 import styled from "styled-components/native";
-
-const { width, height } = Dimensions.get('window')
 
 type ContainerProps = {
     bgColor: keyof typeof defaultTheme.colors.manaSymbols;
@@ -25,17 +22,29 @@ export const Content = styled.View<{ rotate: string }>`
     width: 200%;
     height: 50%;
 
-    align-items: center,
-
+    align-items: center;
 `
-
 export const Name = styled.Text`
     color: ${({ theme }) => theme.colors.white};
-    font-size: 32px;
+    font-size: 28px;
     text-align: center;
 
     margin-top: 16px;
+
+    font-family: 'Roboto';
+    font-weight: 500;
 `
+export const Life = styled.Text`
+    color: ${({ theme }) => theme.colors.white};
+    font-size: 96px;
+    text-align: center;
+
+    margin-top: 16px;
+
+    font-family: 'Roboto Mono';
+    font-weight: 500;
+`
+
 export const ManaSymbolContainer = styled.View`
     position: absolute;
     width: 100%;

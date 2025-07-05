@@ -1,6 +1,6 @@
 import { defaultTheme } from "@/styles/themes/default";
 import { FC } from "react";
-import { Container, Content, ManaSymbolContainer, Name } from "./styles";
+import { Container, Content, Life, ManaSymbolContainer, Name } from "./styles";
 
 import Black from "@/assets/svgs/mana-symbols/black.svg";
 import Blue from "@/assets/svgs/mana-symbols/blue.svg";
@@ -43,11 +43,15 @@ export const PlayerCounter: FC<Props> = ({ player, rotate, rows, columns }) => {
     return (
         <Container bgColor={player.color} rotate={rotate} rows={rows} columns={columns}>
             <Content rotate={rotate}>
-
                 <ManaSymbolContainer>
                     <ManaSymbol width={columns > 1 ? 160 : 400} height={columns > 1 ? 160 : 400} />
                 </ManaSymbolContainer>
                 <Name>{player.name}</Name>
+
+                <Life>
+                    {player.life}
+                </Life>
+
             </Content>
         </Container>
     );
