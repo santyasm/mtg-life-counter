@@ -1,15 +1,15 @@
-
 import { defaultTheme } from "@/styles/themes/default";
-import { useFonts } from 'expo-font';
+import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-import * as SplashScreen from 'expo-splash-screen';
+import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { ThemeProvider } from "styled-components/native";
 
 export default function Layout() {
     const [loaded, error] = useFonts({
-        'Roboto': require('../../assets/fonts/Roboto.ttf'),
-        'Roboto Mono': require('../../assets/fonts/RobotoMono.ttf'),
+        Roboto: require("../../assets/fonts/Roboto.ttf"),
+        "Roboto Mono": require("../../assets/fonts/RobotoMono.ttf"),
+        Oswald: require("../../assets/fonts/Oswald.ttf"),
     });
 
     useEffect(() => {
@@ -25,5 +25,5 @@ export default function Layout() {
         <ThemeProvider theme={defaultTheme}>
             <Stack screenOptions={{ headerShown: false }} />
         </ThemeProvider>
-    )
+    );
 }

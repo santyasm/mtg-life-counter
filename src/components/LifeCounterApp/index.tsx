@@ -13,11 +13,15 @@ export const LifeCounterApp = () => {
                 {players.map((player, index) => {
                     const rotate = getRotation(players.length, index);
                     return (
-                        <PlayerCounter player={{ ...player }}
+                        <PlayerCounter
+                            playersCount={players.length}
+                            player={{ ...player }}
                             key={`${player.id}-${player.name}`}
                             columns={columns}
                             rows={rows}
-                            rotate={rotate} />
+                            rotate={rotate}
+                            index={index}
+                        />
                     );
                 })}
             </PlayersContainer>

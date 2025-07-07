@@ -1,49 +1,86 @@
 import { defaultTheme } from "@/styles/themes/default";
-import styled from "styled-components/native";
+import { Dimensions } from "react-native";
+import { styled } from "styled-components/native";
+
+import { getStatusBarHeight } from "react-native-iphone-screen-helper";
+
+const { width, height } = Dimensions.get("window");
 
 type ContainerProps = {
     bgColor: keyof typeof defaultTheme.colors.manaSymbols;
     rotate: string;
     rows: number;
     columns: number;
+    isLastPlayer: boolean;
 };
 
 export const Container = styled.View<ContainerProps>`
-    background-color: ${({ bgColor, theme }) => theme.colors.manaSymbols[bgColor] || theme.colors.manaSymbols.black};
+    background-color: ${({ bgColor, theme }) =>
+        theme.colors.manaSymbols[bgColor] || theme.colors.manaSymbols.black};
     align-items: center;
     justify-content: center;
-  width: ${({ columns }) => `${100 / columns}%`};
-  height: ${({ rows }) => `${100 / rows}%`};
+    width: ${({ columns, isLastPlayer }) => `${100 / (isLastPlayer ? 1 : columns)}%`};
+    height: ${({ rows, isLastPlayer }) => `${100 / rows}%`};
 `;
 
-export const Content = styled.View<{ rotate: string }>`
+export const Content = styled.View<{ rotate: string; playersCount: number; isLastPlayer: boolean }>`
     transform: ${({ rotate }) => `rotate(${rotate})`};
-    /* background-color: red; */
-    width: 200%;
-    height: 50%;
 
     align-items: center;
-`
+    justify-content: center;
+
+    width: ${({ playersCount, isLastPlayer }) =>
+        playersCount > 2 && !isLastPlayer
+            ? `${height * (playersCount > 4 ? 0.3 : 0.4)}px`
+            : `${width}px`};
+    /* flex: ${({ playersCount, isLastPlayer }) =>
+        isLastPlayer || playersCount === 2 ? 1 : playersCount > 4 ? 0.7 : 0.5}; */
+
+    flex: 0.9;
+`;
+
 export const Name = styled.Text`
-    color: ${({ theme }) => theme.colors.white};
-    font-size: 28px;
+    width: 100%;
     text-align: center;
 
-    margin-top: 16px;
+    align-self: center;
 
-    font-family: 'Roboto';
-    font-weight: 500;
-`
-export const Life = styled.Text`
+    margin-left: ${getStatusBarHeight()}px;
+
+    top: 0;
     color: ${({ theme }) => theme.colors.white};
-    font-size: 96px;
-    text-align: center;
+    font-size: 32px;
+    position: absolute;
 
-    margin-top: 16px;
+    /* background-color: red; */
 
-    font-family: 'Roboto Mono';
+    font-family: "Oswald";
     font-weight: 500;
-`
+`;
+
+export const LifeContainer = styled.View<{ playersCount: number; isLastPlayer: boolean }>`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    flex: ${({ playersCount, isLastPlayer }) =>
+        playersCount === 2 || isLastPlayer ? 1 : playersCount > 4 ? 0.8 : 0.5};
+    width: 115%;
+    padding: 2% ${getStatusBarHeight()}px 0 ${getStatusBarHeight()}px;
+    height: 100%;
+
+    /* background-color: red; */
+`;
+
+export const Life = styled.Text<{ playersCount: number; isLastPlayer: boolean }>`
+    color: ${({ theme }) => theme.colors.white};
+    font-size: ${({ playersCount, isLastPlayer }) =>
+        `${(120 / (isLastPlayer || playersCount === 2 ? 2 : 4)) * 2.5}px`};
+    text-align: center;
+    flex: 1;
+    font-family: "Oswald";
+    font-weight: 800;
+`;
 
 export const ManaSymbolContainer = styled.View`
     position: absolute;
