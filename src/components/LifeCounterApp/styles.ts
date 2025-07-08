@@ -13,5 +13,4 @@ export const PlayersContainer = styled.View`
     justify-content: center;
 
     flex: 1;
-    /* background: pink; */
 `;

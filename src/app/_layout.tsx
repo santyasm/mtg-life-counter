@@ -1,3 +1,4 @@
+import { PlayersContextProvider } from "@/contexts/PlayersContext";
 import { defaultTheme } from "@/styles/themes/default";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -22,8 +23,10 @@ export default function Layout() {
         return null;
     }
     return (
-        <ThemeProvider theme={defaultTheme}>
-            <Stack screenOptions={{ headerShown: false }} />
-        </ThemeProvider>
+        <PlayersContextProvider>
+            <ThemeProvider theme={defaultTheme}>
+                <Stack screenOptions={{ headerShown: false }} />
+            </ThemeProvider>
+        </PlayersContextProvider>
     );
 }

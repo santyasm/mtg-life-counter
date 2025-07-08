@@ -1,11 +1,14 @@
-import { Players } from "@/constants/Players";
+import { PlayersContext } from "@/contexts/PlayersContext";
+import { useContext } from "react";
 import { PlayerCounter } from "../PlayerCounter";
 import { Container, PlayersContainer } from "./styles";
 import { getGridConfig, getRotation } from "./utils";
 
 export const LifeCounterApp = () => {
-    const players = Players.initialPlayers;
+    const { players } = useContext(PlayersContext);
     const { columns, rows } = getGridConfig(players.length);
+
+    console.log(players);
 
     return (
         <Container>

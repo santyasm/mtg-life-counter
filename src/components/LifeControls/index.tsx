@@ -8,15 +8,17 @@ interface Props {
 }
 
 export const LifeControls: FC<Props> = ({ delta }) => {
+    const SIZE_BUTTON = 30;
+
     return (
         <Container>
             <IncrementButton>
-                <PolygonSvg width={30} height={30} />
+                <PolygonSvg width={SIZE_BUTTON} height={SIZE_BUTTON} />
             </IncrementButton>
             <Delta>{delta}</Delta>
 
             <DecrementButton>
-                <PolygonSvg width={30} height={30} />
+                <PolygonSvg width={SIZE_BUTTON} height={SIZE_BUTTON} />
             </DecrementButton>
         </Container>
     );

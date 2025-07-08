@@ -19,9 +19,6 @@ export const Delta = styled.Text`
 export const IncrementButton = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
-
-    /* width: 10px; */
-    /* height: 10px; */
 `;
 
 export const DecrementButton = styled(IncrementButton)`
