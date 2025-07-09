@@ -1,7 +1,8 @@
-import { defaultTheme } from "@/styles/themes/default";
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { Container, Content, Life, LifeContainer, ManaSymbolContainer, Name } from "./styles";
 
+import { PlayersContext } from "@/contexts/PlayersContext";
+import { Player } from "@/reducers/players/reducer";
 import { Dimensions } from "react-native";
 import { LifeControls } from "../LifeControls";
 import { getSvgManaSymbol } from "./utils";
@@ -9,12 +10,7 @@ import { getSvgManaSymbol } from "./utils";
 const { width, height } = Dimensions.get("window");
 
 interface Props {
-    player: {
-        id: number;
-        name: string;
-        life: number;
-        color: keyof typeof defaultTheme.colors.manaSymbols;
-    };
+    player: Player;
     rotate: string;
     rows: number;
     columns: number;
@@ -30,6 +26,8 @@ export const PlayerCounter: FC<Props> = ({
     playersCount,
     index,
 }) => {
+    const { incrementLife, decrementLife } = useContext(PlayersContext);
+
     const ManaSymbol = getSvgManaSymbol(player.color);
     const isLastPlayer = playersCount % 2 !== 0 && index === playersCount - 1;
     const MANA_SYMBOL_SIZE =
@@ -38,6 +36,14 @@ export const PlayerCounter: FC<Props> = ({
             : rows > 2
             ? (height / rows) * 0.95
             : 380;
+
+    const handleIncrementPress = (delta: number) => {
+        incrementLife(player, delta);
+    };
+
+    const handleDecrementPress = (delta: number) => {
+        decrementLife(player, delta);
+    };
 
     return (
         <Container
@@ -53,11 +59,19 @@ export const PlayerCounter: FC<Props> = ({
                 </ManaSymbolContainer>
 
                 <LifeContainer playersCount={playersCount} isLastPlayer={isLastPlayer}>
-                    <LifeControls delta={1} />
+                    <LifeControls
+                        delta={1}
+                        onIncrementPress={handleIncrementPress}
+                        onDecrementPress={handleDecrementPress}
+                    />
                     <Life playersCount={playersCount} isLastPlayer={isLastPlayer}>
                         {player.life}
                     </Life>
-                    <LifeControls delta={5} />
+                    <LifeControls
+                        delta={5}
+                        onIncrementPress={handleIncrementPress}
+                        onDecrementPress={handleDecrementPress}
+                    />
                     <Name>{player.name}</Name>
                 </LifeContainer>
             </Content>

@@ -1,12 +1,13 @@
 import { PLAYERS } from "@/constants/Players";
-import { setPlayers } from "@/reducers/players/actions";
+import { decrementPlayerLife, incrementPlayerLife, setPlayers } from "@/reducers/players/actions";
 import { Player, playersReducer } from "@/reducers/players/reducer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, FC, ReactNode, useEffect, useReducer } from "react";
 
 interface PlayersContextType {
     players: Player[];
-    dispatch: React.Dispatch<any>; // Se quiser usar fora
+    incrementLife: (player: Player, delta: number) => void;
+    decrementLife: (player: Player, delta: number) => void;
 }
 
 export const PlayersContext = createContext<PlayersContextType>({} as PlayersContextType);
@@ -31,9 +32,6 @@ export const PlayersContextProvider: FC<PlayersContextProviderProps> = ({ childr
 
             if (!!storedStateAsJSON.length) {
                 dispatch(setPlayers(storedStateAsJSON));
-            } else {
-                console.log("1.2");
-                dispatch(setPlayers(PLAYERS));
             }
         };
         loadState();
@@ -47,18 +45,27 @@ export const PlayersContextProvider: FC<PlayersContextProviderProps> = ({ childr
                     "@mtg-life-counter:players-state-1.0.0",
                     JSON.stringify(players),
                 );
-
-                console.log("2");
+            } else {
+                dispatch(setPlayers(PLAYERS));
             }
         };
         saveState();
     }, [players]);
 
+    const incrementLife = (player: Player, delta: number) => {
+        dispatch(incrementPlayerLife(player, delta));
+    };
+
+    const decrementLife = (player: Player, delta: number) => {
+        dispatch(decrementPlayerLife(player, delta));
+    };
+
     return (
         <PlayersContext.Provider
             value={{
                 players,
-                dispatch,
+                incrementLife,
+                decrementLife,
             }}
         >
             {children}

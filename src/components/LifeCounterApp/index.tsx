@@ -8,7 +8,7 @@ export const LifeCounterApp = () => {
     const { players } = useContext(PlayersContext);
     const { columns, rows } = getGridConfig(players.length);
 
-    console.log(players);
+    // console.log("Players: ", players);
 
     return (
         <Container>
