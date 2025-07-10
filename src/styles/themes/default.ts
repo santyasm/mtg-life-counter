@@ -1,11 +1,13 @@
 export const defaultTheme = {
     colors: {
-        background: "#1E1E1E",
+        background: "#171717",
         primary: "#7327C8",
         secondary: "#00ff00",
         tertiary: "#0000ff",
         white: "#ffffff",
         gray: "#808080",
+
+        text: "#D6D6D6",
 
         manaSymbols: {
             red: "#D93833",
