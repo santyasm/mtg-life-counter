@@ -26,3 +26,49 @@ export const LogoContainer = styled.View`
     width: 100%;
     align-items: center;
 `;
+
+export const PlayersNumberContainer = styled.View`
+    margin-top: 56px;
+`;
+
+export const PlayersNumberLabel = styled.Text`
+    font-family: "Roboto Mono";
+
+    color: ${({ theme }) => theme.colors.text};
+
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+`;
+
+export const PlayersNumberSelectContainer = styled.FlatList`
+    margin-top: 16px;
+`;
+
+export const PlayersNumberOption = styled.TouchableOpacity<{
+    marginRight: boolean;
+    isSelected: boolean;
+}>`
+    width: 69px;
+    height: 55px;
+    border-radius: 6px;
+    background-color: ${({ theme }) => theme.colors.primary};
+
+    align-items: center;
+    justify-content: center;
+
+    opacity: ${(props) => (props.isSelected ? 1 : 0.6)};
+
+    margin-right: ${(props) => (props.marginRight ? "16px" : "unset")};
+`;
+
+export const PlayersNumberOptionText = styled.Text<{ isSelected: boolean }>`
+    font-family: "Roboto Mono";
+    font-weight: ${(props) => (props.isSelected ? 700 : 500)};
+    font-size: 20px;
+
+    text-decoration: ${(props) => (props.isSelected ? "underline" : "none")};
+    text-decoration-color: ${({ theme }) => theme.colors.white};
+
+    color: ${({ theme }) => theme.colors.white};
+`;
