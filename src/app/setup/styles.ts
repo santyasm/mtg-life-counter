@@ -27,11 +27,11 @@ export const LogoContainer = styled.View`
     align-items: center;
 `;
 
-export const PlayersNumberContainer = styled.View`
+export const PlayersFormContainer = styled.View`
     margin-top: 56px;
 `;
 
-export const PlayersNumberLabel = styled.Text`
+export const Label = styled.Text`
     font-family: "Roboto Mono";
 
     color: ${({ theme }) => theme.colors.text};
@@ -42,22 +42,23 @@ export const PlayersNumberLabel = styled.Text`
 `;
 
 export const PlayersNumberSelectContainer = styled.FlatList`
-    margin-top: 16px;
+    margin-top: 24px;
 `;
 
 export const PlayersNumberOption = styled.TouchableOpacity<{
-    marginRight: boolean;
+    marginRight?: boolean;
     isSelected: boolean;
 }>`
     width: 69px;
     height: 55px;
     border-radius: 6px;
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme, isSelected }) =>
+        isSelected ? theme.colors.primary : theme.colors.primary + "40"};
 
     align-items: center;
     justify-content: center;
 
-    opacity: ${(props) => (props.isSelected ? 1 : 0.6)};
+    /* opacity: ${(props) => (props.isSelected ? 1 : 0.6)}; */
 
     margin-right: ${(props) => (props.marginRight ? "16px" : "unset")};
 `;
@@ -67,8 +68,21 @@ export const PlayersNumberOptionText = styled.Text<{ isSelected: boolean }>`
     font-weight: ${(props) => (props.isSelected ? 700 : 500)};
     font-size: 20px;
 
-    text-decoration: ${(props) => (props.isSelected ? "underline" : "none")};
-    text-decoration-color: ${({ theme }) => theme.colors.white};
+    /* text-decoration: ${(props) => (props.isSelected ? "underline" : "none")}; */
+    /* text-decoration-color: ${({ theme }) => theme.colors.white}; */
 
     color: ${({ theme }) => theme.colors.white};
 `;
+
+export const SelectStartingLifeContainer = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    margin-top: 24px;
+`;
+
+export const LifeOptionContainer = styled(PlayersNumberOption)``;
+
+export const LifeOptionText = styled(PlayersNumberOptionText)``;

@@ -5,24 +5,30 @@ import {
     CancelButton,
     Container,
     Header,
+    Label,
+    LifeOptionContainer,
+    LifeOptionText,
     LogoContainer,
-    PlayersNumberContainer,
-    PlayersNumberLabel,
+    PlayersFormContainer,
     PlayersNumberOption,
     PlayersNumberOptionText,
     PlayersNumberSelectContainer,
+    SelectStartingLifeContainer,
 } from "./styles";
 
 import Logo from "@/assets/svgs/logo.svg";
 import { useState } from "react";
 import { View } from "react-native";
-import { PlayerNumberItem } from "./types";
-import { PLAYER_NUMBER_LIST } from "./utils";
+import { PlayerNumberItem, PlayerStartingLifeItem } from "./types";
+import { PLAYERS_NUMBER_LIST, PLAYERS_STARTING_LIFE_LIST } from "./utils";
 
 const Setup = () => {
-    const [playersNumberSelected, setPlayersNumberSelected] = useState(PLAYER_NUMBER_LIST[0]);
+    const [playersNumberSelected, setPlayersNumberSelected] = useState(PLAYERS_NUMBER_LIST[0]);
+    const [playersStartingLifeSelected, setPlayersStartingLifeSelected] = useState(
+        PLAYERS_STARTING_LIFE_LIST[0],
+    );
 
-    const cancel = () => {
+    const back = () => {
         router.back();
     };
 
@@ -30,10 +36,14 @@ const Setup = () => {
         setPlayersNumberSelected(item);
     };
 
+    const handleChangePlayersStartingLifeSelected = (item: PlayerStartingLifeItem) => {
+        setPlayersStartingLifeSelected(item);
+    };
+
     return (
         <Container>
             <Header>
-                <CancelButton onPress={cancel}>
+                <CancelButton onPress={back}>
                     <AntDesign name="back" size={24} color="white" />
                 </CancelButton>
 
@@ -44,11 +54,11 @@ const Setup = () => {
                 <View />
             </Header>
 
-            <PlayersNumberContainer>
-                <PlayersNumberLabel>SELECT NUMBER OF PLAYERS</PlayersNumberLabel>
+            <PlayersFormContainer>
+                <Label>SELECT NUMBER OF PLAYERS</Label>
 
                 <PlayersNumberSelectContainer
-                    data={PLAYER_NUMBER_LIST}
+                    data={PLAYERS_NUMBER_LIST}
                     keyExtractor={(item: unknown, index: number) =>
                         `${(item as PlayerNumberItem).value}-${index}`
                     }
@@ -59,6 +69,7 @@ const Setup = () => {
                             onPress={() =>
                                 handleChangePlayersNumberSelected(item as PlayerNumberItem)
                             }
+                            activeOpacity={0.7}
                         >
                             <PlayersNumberOptionText isSelected={playersNumberSelected === item}>
                                 {(item as PlayerNumberItem).value}
@@ -71,7 +82,26 @@ const Setup = () => {
                         alignItems: "center",
                     }}
                 />
-            </PlayersNumberContainer>
+            </PlayersFormContainer>
+
+            <PlayersFormContainer>
+                <Label>STARTING LIFE POSITION</Label>
+
+                <SelectStartingLifeContainer>
+                    {PLAYERS_STARTING_LIFE_LIST.map((item, index) => (
+                        <LifeOptionContainer
+                            key={`${item.value}-${index}`}
+                            isSelected={item === playersStartingLifeSelected}
+                            onPress={() => handleChangePlayersStartingLifeSelected(item)}
+                            activeOpacity={0.7}
+                        >
+                            <LifeOptionText isSelected={item === playersStartingLifeSelected}>
+                                {item.value}
+                            </LifeOptionText>
+                        </LifeOptionContainer>
+                    ))}
+                </SelectStartingLifeContainer>
+            </PlayersFormContainer>
         </Container>
     );
 };
