@@ -1,7 +1,10 @@
+import { Audio } from "expo-av";
+import * as Haptics from "expo-haptics";
 import { FC } from "react";
-import { Container, DecrementButton, Delta, IncrementButton } from "./styles";
 
+import ButtonUiDigital from "@/assets/sounds/button-click-289742.mp3";
 import PolygonSvg from "@/assets/svgs/icons/polygon.svg";
+import { Container, DecrementButton, Delta, IncrementButton } from "./styles";
 
 interface Props {
     delta: number;
@@ -12,11 +15,31 @@ interface Props {
 export const LifeControls: FC<Props> = ({ delta, onIncrementPress, onDecrementPress }) => {
     const SIZE_BUTTON = 30;
 
+    const effect = async () => {
+        try {
+            const { sound } = await Audio.Sound.createAsync(ButtonUiDigital, {
+                shouldPlay: true,
+            });
+
+            sound.setOnPlaybackStatusUpdate((status) => {
+                if (status.isLoaded && status.didJustFinish) {
+                    sound.unloadAsync();
+                }
+            });
+
+            await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        } catch (error) {
+            console.log("Erro ao tocar som:", error);
+        }
+    };
+
     const increment = () => {
+        effect();
         onIncrementPress(delta);
     };
 
     const decrement = () => {
+        effect();
         onDecrementPress(delta);
     };
 

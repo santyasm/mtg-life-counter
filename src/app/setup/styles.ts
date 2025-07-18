@@ -1,4 +1,4 @@
-import { getStatusBarHeight } from "react-native-iphone-screen-helper";
+import { getBottomSpace, getStatusBarHeight } from "react-native-iphone-screen-helper";
 import { styled } from "styled-components/native";
 
 export const Container = styled.View`
@@ -83,6 +83,16 @@ export const SelectStartingLifeContainer = styled.View`
     margin-top: 24px;
 `;
 
-export const LifeOptionContainer = styled(PlayersNumberOption)``;
+export const LifeOptionContainer = styled(PlayersNumberOption)`
+    background-color: ${({ theme, isSelected }) =>
+        isSelected ? theme.colors.primary : theme.colors.darkGray};
+`;
 
 export const LifeOptionText = styled(PlayersNumberOptionText)``;
+
+export const Footer = styled.View`
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0 24px ${getBottomSpace() + 32}px 24px;
+`;

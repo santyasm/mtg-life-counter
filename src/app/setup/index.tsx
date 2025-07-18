@@ -1,9 +1,15 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
+import * as Haptics from "expo-haptics";
+
+import UiDigital from "@/assets/sounds/toque_mp3_whatsapp_som.mp3";
+import UiDigital1 from "@/assets/sounds/ui-digital-button-click-gfx-sounds.mp3";
+import { Audio } from "expo-av";
 import { router } from "expo-router";
 
 import {
     CancelButton,
     Container,
+    Footer,
     Header,
     Label,
     LifeOptionContainer,
@@ -17,6 +23,7 @@ import {
 } from "./styles";
 
 import Logo from "@/assets/svgs/logo.svg";
+import { Button } from "@/components/Button";
 import { useState } from "react";
 import { View } from "react-native";
 import { PlayerNumberItem, PlayerStartingLifeItem } from "./types";
@@ -29,14 +36,41 @@ const Setup = () => {
     );
 
     const back = () => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
         router.back();
     };
 
-    const handleChangePlayersNumberSelected = (item: PlayerNumberItem) => {
-        setPlayersNumberSelected(item);
+    const handleChangePlayersNumberSelected = async (item: PlayerNumberItem) => {
+        try {
+            const { sound } = await Audio.Sound.createAsync(UiDigital, {
+                shouldPlay: true,
+            });
+
+            sound.setOnPlaybackStatusUpdate((status) => {
+                if (status.isLoaded && status.didJustFinish) {
+                    sound.unloadAsync();
+                }
+            });
+
+            await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+            setPlayersNumberSelected(item);
+        } catch (error) {
+            console.log("Erro ao tocar som:", error);
+        }
     };
 
-    const handleChangePlayersStartingLifeSelected = (item: PlayerStartingLifeItem) => {
+    const handleChangePlayersStartingLifeSelected = async (item: PlayerStartingLifeItem) => {
+        const { sound } = await Audio.Sound.createAsync(UiDigital1, {
+            shouldPlay: true,
+        });
+
+        sound.setOnPlaybackStatusUpdate((status) => {
+            if (status.isLoaded && status.didJustFinish) {
+                sound.unloadAsync();
+            }
+        });
+
+        await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         setPlayersStartingLifeSelected(item);
     };
 
@@ -102,6 +136,10 @@ const Setup = () => {
                     ))}
                 </SelectStartingLifeContainer>
             </PlayersFormContainer>
+
+            <Footer>
+                <Button title="Save" />
+            </Footer>
         </Container>
     );
 };

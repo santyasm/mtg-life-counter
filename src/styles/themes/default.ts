@@ -6,6 +6,7 @@ export const defaultTheme = {
         tertiary: "#0000ff",
         white: "#ffffff",
         gray: "#808080",
+        darkGray: "#313131",
 
         text: "#D6D6D6",
 
