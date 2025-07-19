@@ -12,7 +12,7 @@ export enum ActionTypes {
     SET_PLAYER_NAME = "SET_PLAYER_NAME",
 }
 
-export const setPlayers = (players: Player[]) => {
+export const setPlayersAction = (players: Player[]) => {
     return {
         type: ActionTypes.SET_PLAYERS,
         payload: {

@@ -20,7 +20,7 @@ export const Container = styled.View<ContainerProps>`
     align-items: center;
     justify-content: center;
     width: ${({ columns, isLastPlayer }) => `${100 / (isLastPlayer ? 1 : columns)}%`};
-    height: ${({ rows, isLastPlayer }) => `${100 / rows}%`};
+    height: ${({ rows }) => `${100 / rows}%`};
 `;
 
 export const Content = styled.View<{ rotate: string; playersCount: number; isLastPlayer: boolean }>`
@@ -33,10 +33,8 @@ export const Content = styled.View<{ rotate: string; playersCount: number; isLas
         playersCount > 2 && !isLastPlayer
             ? `${height * (playersCount > 4 ? 0.3 : 0.4)}px`
             : `${width}px`};
-    /* flex: ${({ playersCount, isLastPlayer }) =>
-        isLastPlayer || playersCount === 2 ? 1 : playersCount > 4 ? 0.7 : 0.5}; */
-
-    flex: 0.9;
+    flex: ${({ playersCount, isLastPlayer }) =>
+        isLastPlayer || playersCount === 2 ? 1 : playersCount > 4 ? 0.7 : 0.5};
 `;
 
 export const Name = styled.Text`
@@ -47,12 +45,10 @@ export const Name = styled.Text`
 
     margin-left: ${getStatusBarHeight()}px;
 
-    top: 0;
+    top: 20px;
     color: ${({ theme }) => theme.colors.white};
     font-size: 32px;
     position: absolute;
-
-    /* background-color: red; */
 
     font-family: "Oswald";
     font-weight: 500;
@@ -63,13 +59,11 @@ export const LifeContainer = styled.View<{ playersCount: number; isLastPlayer: b
     align-items: center;
     justify-content: space-between;
 
-    flex: ${({ playersCount, isLastPlayer }) =>
-        playersCount === 2 || isLastPlayer ? 1 : playersCount > 4 ? 0.8 : 0.5};
     width: 115%;
     padding: 2% ${getStatusBarHeight()}px 0 ${getStatusBarHeight()}px;
     height: 100%;
 
-    /* background-color: red; */
+    z-index: 999;
 `;
 
 export const Life = styled.Text<{
@@ -79,9 +73,9 @@ export const Life = styled.Text<{
     value: number;
 }>`
     color: ${({ theme, value }) => (value >= 0 ? theme.colors.white : theme.colors.red)};
-    /* font-size: ${({ playersCount, isLastPlayer }) =>
-        `${(120 / (isLastPlayer || playersCount === 2 ? 2 : 4)) * 2.5}px`}; */
-    font-size: ${({ fontSize }) => fontSize}px;
+    font-size: ${({ playersCount, isLastPlayer }) =>
+        `${(120 / (isLastPlayer || playersCount === 2 ? 2 : 4)) * 2.5}px`};
+    /* font-size: ${({ fontSize }) => fontSize}px; */
 
     text-align: center;
     flex: 1;

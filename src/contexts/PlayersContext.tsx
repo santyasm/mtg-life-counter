@@ -1,5 +1,9 @@
 import { PLAYERS } from "@/constants/Players";
-import { decrementPlayerLife, incrementPlayerLife, setPlayers } from "@/reducers/players/actions";
+import {
+    decrementPlayerLife,
+    incrementPlayerLife,
+    setPlayersAction,
+} from "@/reducers/players/actions";
 import { Player, playersReducer } from "@/reducers/players/reducer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, FC, ReactNode, useEffect, useReducer } from "react";
@@ -8,6 +12,7 @@ interface PlayersContextType {
     players: Player[];
     incrementLife: (player: Player, delta: number) => void;
     decrementLife: (player: Player, delta: number) => void;
+    setCurrentPlayers: (playersCount: number) => void;
 }
 
 export const PlayersContext = createContext<PlayersContextType>({} as PlayersContextType);
@@ -31,7 +36,7 @@ export const PlayersContextProvider: FC<PlayersContextProviderProps> = ({ childr
             const storedStateAsJSON = JSON.parse(storedState!);
 
             if (!!storedStateAsJSON.length) {
-                dispatch(setPlayers(storedStateAsJSON));
+                dispatch(setPlayersAction(storedStateAsJSON));
             }
         };
         loadState();
@@ -46,7 +51,7 @@ export const PlayersContextProvider: FC<PlayersContextProviderProps> = ({ childr
                     JSON.stringify(players),
                 );
             } else {
-                dispatch(setPlayers(PLAYERS));
+                dispatch(setPlayersAction(PLAYERS.slice(0, 2)));
             }
         };
         saveState();
@@ -60,12 +65,34 @@ export const PlayersContextProvider: FC<PlayersContextProviderProps> = ({ childr
         dispatch(decrementPlayerLife(player, delta));
     };
 
+    const setCurrentPlayers = (playersCount: number) => {
+        // Garante que estamos sempre pegando os N primeiros da lista base
+        const basePlayers = PLAYERS.slice(0, playersCount);
+
+        // Atualiza os dados mantendo vida/nome se já existirem
+        const updatedPlayers = basePlayers.map((playerFromList) => {
+            const existing = players.find((p) => p.id === playerFromList.id);
+
+            return existing
+                ? {
+                      ...playerFromList,
+                      life: existing.life,
+                      name: existing.name,
+                  }
+                : playerFromList;
+        });
+
+        // Agora sim: corta qualquer jogador além do limite
+        dispatch(setPlayersAction(updatedPlayers));
+    };
+
     return (
         <PlayersContext.Provider
             value={{
                 players,
                 incrementLife,
                 decrementLife,
+                setCurrentPlayers,
             }}
         >
             {children}

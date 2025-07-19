@@ -17,7 +17,7 @@ export const playersReducer = (state: State, action: any) => {
     switch (action.type) {
         case ActionTypes.SET_PLAYERS:
             return {
-                ...state,
+                // ...state,
                 players: action.payload.players,
             };
 

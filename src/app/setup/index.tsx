@@ -24,13 +24,18 @@ import {
 
 import Logo from "@/assets/svgs/logo.svg";
 import { Button } from "@/components/Button";
-import { useState } from "react";
+import { PlayersContext } from "@/contexts/PlayersContext";
+import { useContext, useState } from "react";
 import { View } from "react-native";
 import { PlayerNumberItem, PlayerStartingLifeItem } from "./types";
 import { PLAYERS_NUMBER_LIST, PLAYERS_STARTING_LIFE_LIST } from "./utils";
 
 const Setup = () => {
-    const [playersNumberSelected, setPlayersNumberSelected] = useState(PLAYERS_NUMBER_LIST[0]);
+    const { setCurrentPlayers, players } = useContext(PlayersContext);
+
+    const [playersNumberSelected, setPlayersNumberSelected] = useState(
+        PLAYERS_NUMBER_LIST.find((p) => p.value === players.length),
+    );
     const [playersStartingLifeSelected, setPlayersStartingLifeSelected] = useState(
         PLAYERS_STARTING_LIFE_LIST[0],
     );
@@ -72,6 +77,12 @@ const Setup = () => {
 
         await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         setPlayersStartingLifeSelected(item);
+    };
+
+    const save = () => {
+        setCurrentPlayers(playersNumberSelected?.value!);
+
+        back();
     };
 
     return (
@@ -138,7 +149,7 @@ const Setup = () => {
             </PlayersFormContainer>
 
             <Footer>
-                <Button title="Save" />
+                <Button title="Save" onPress={save} />
             </Footer>
         </Container>
     );

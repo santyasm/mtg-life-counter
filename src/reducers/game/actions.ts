@@ -15,7 +15,7 @@ export const setInitialPlayersLifeAction = (initialPlayersLife: number) => {
     };
 };
 
-export const setCurrentPlayersCount = (playersCount: number) => {
+export const setCurrentPlayersCountAction = (playersCount: number) => {
     return {
         type: ActionTypes.SET_CURRENT_PLAYERS_COUNT,
         payload: {
@@ -24,7 +24,7 @@ export const setCurrentPlayersCount = (playersCount: number) => {
     };
 };
 
-export const setCurrentPlayers = (players: Player[]) => {
+export const setCurrentPlayersAction = (players: Player[]) => {
     return {
         type: ActionTypes.SET_CURRENT_PLAYERS,
         payload: {

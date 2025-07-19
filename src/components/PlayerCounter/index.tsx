@@ -54,11 +54,11 @@ export const PlayerCounter: FC<Props> = ({
             isLastPlayer={isLastPlayer}
         >
             <Content rotate={rotate} playersCount={playersCount} isLastPlayer={isLastPlayer}>
-                <ManaSymbolContainer>
-                    <ManaSymbol width={MANA_SYMBOL_SIZE} height={MANA_SYMBOL_SIZE} />
-                </ManaSymbolContainer>
-
-                <LifeContainer playersCount={playersCount} isLastPlayer={isLastPlayer}>
+                <LifeContainer
+                    rotate={rotate}
+                    playersCount={playersCount}
+                    isLastPlayer={isLastPlayer}
+                >
                     <LifeControls
                         delta={1}
                         onIncrementPress={handleIncrementPress}
@@ -79,6 +79,10 @@ export const PlayerCounter: FC<Props> = ({
                     />
                     <Name>{player.name}</Name>
                 </LifeContainer>
+
+                <ManaSymbolContainer>
+                    <ManaSymbol width={MANA_SYMBOL_SIZE} height={MANA_SYMBOL_SIZE} />
+                </ManaSymbolContainer>
             </Content>
         </Container>
     );

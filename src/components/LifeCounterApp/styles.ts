@@ -18,5 +18,5 @@ export const PlayersContainer = styled.View`
 export const ActionButtonsContainer = styled.View`
     position: absolute;
     align-self: center;
-    z-index: 1;
+    z-index: 999;
 `;

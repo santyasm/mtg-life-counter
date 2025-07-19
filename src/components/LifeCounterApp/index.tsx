@@ -1,7 +1,7 @@
-import { PlayersContext } from "@/contexts/PlayersContext";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useContext } from "react";
 
+import { PlayersContext } from "@/contexts/PlayersContext";
 import { router } from "expo-router";
 import { TouchableOpacity } from "react-native";
 import { PlayerCounter } from "../PlayerCounter";
@@ -10,6 +10,7 @@ import { getGridConfig, getRotation } from "./utils";
 
 export const LifeCounterApp = () => {
     const { players } = useContext(PlayersContext);
+    // const { players } = useContext(GameContext);
     const { columns, rows } = getGridConfig(players.length);
 
     const goToSetup = () => {
@@ -21,7 +22,7 @@ export const LifeCounterApp = () => {
             <PlayersContainer>
                 <ActionButtonsContainer>
                     <TouchableOpacity activeOpacity={0.7} onPress={goToSetup}>
-                        <Ionicons name="settings-sharp" size={32} color="white" />
+                        <Ionicons name="settings-sharp" size={36} color="white" />
                     </TouchableOpacity>
                 </ActionButtonsContainer>
 
