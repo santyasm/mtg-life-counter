@@ -72,12 +72,22 @@ export const LifeContainer = styled.View<{ playersCount: number; isLastPlayer: b
     /* background-color: red; */
 `;
 
-export const Life = styled.Text<{ playersCount: number; isLastPlayer: boolean }>`
-    color: ${({ theme }) => theme.colors.white};
-    font-size: ${({ playersCount, isLastPlayer }) =>
-        `${(120 / (isLastPlayer || playersCount === 2 ? 2 : 4)) * 2.5}px`};
+export const Life = styled.Text<{
+    playersCount: number;
+    isLastPlayer: boolean;
+    fontSize: number;
+    value: number;
+}>`
+    color: ${({ theme, value }) => (value >= 0 ? theme.colors.white : theme.colors.red)};
+    /* font-size: ${({ playersCount, isLastPlayer }) =>
+        `${(120 / (isLastPlayer || playersCount === 2 ? 2 : 4)) * 2.5}px`}; */
+    font-size: ${({ fontSize }) => fontSize}px;
+
     text-align: center;
     flex: 1;
+
+    overflow-x: hidden;
+
     font-family: "Oswald";
     font-weight: 800;
 `;

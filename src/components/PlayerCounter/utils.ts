@@ -20,3 +20,12 @@ export const getSvgManaSymbol = (color: string) => {
             return Black;
     }
 };
+
+export const getDynamicFontSize = (value: number): number => {
+    const decimals = value.toString()?.length || 0;
+
+    if (decimals <= 2) return 140;
+    if (decimals <= 4) return 120;
+    if (decimals <= 6) return 90;
+    return 48;
+};

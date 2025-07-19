@@ -5,7 +5,7 @@ import { PlayersContext } from "@/contexts/PlayersContext";
 import { Player } from "@/reducers/players/reducer";
 import { Dimensions } from "react-native";
 import { LifeControls } from "../LifeControls";
-import { getSvgManaSymbol } from "./utils";
+import { getDynamicFontSize, getSvgManaSymbol } from "./utils";
 
 const { width, height } = Dimensions.get("window");
 
@@ -64,7 +64,12 @@ export const PlayerCounter: FC<Props> = ({
                         onIncrementPress={handleIncrementPress}
                         onDecrementPress={handleDecrementPress}
                     />
-                    <Life playersCount={playersCount} isLastPlayer={isLastPlayer}>
+                    <Life
+                        playersCount={playersCount}
+                        isLastPlayer={isLastPlayer}
+                        fontSize={getDynamicFontSize(player.life)}
+                        value={player.life}
+                    >
                         {player.life}
                     </Life>
                     <LifeControls
