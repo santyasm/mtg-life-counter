@@ -10,7 +10,6 @@ import { getGridConfig, getRotation } from "./utils";
 
 export const LifeCounterApp = () => {
     const { players } = useContext(PlayersContext);
-    // const { players } = useContext(GameContext);
     const { columns, rows } = getGridConfig(players.length);
 
     const goToSetup = () => {

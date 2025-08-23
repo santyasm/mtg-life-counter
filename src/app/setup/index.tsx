@@ -1,8 +1,7 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import * as Haptics from "expo-haptics";
 
-import UiDigital from "@/assets/sounds/toque_mp3_whatsapp_som.mp3";
-import UiDigital1 from "@/assets/sounds/ui-digital-button-click-gfx-sounds.mp3";
+import UiDigitalSound from "@/assets/sounds/button-click-289742.mp3";
 import { Audio } from "expo-av";
 import { router } from "expo-router";
 
@@ -47,7 +46,7 @@ const Setup = () => {
 
     const handleChangePlayersNumberSelected = async (item: PlayerNumberItem) => {
         try {
-            const { sound } = await Audio.Sound.createAsync(UiDigital, {
+            const { sound } = await Audio.Sound.createAsync(UiDigitalSound, {
                 shouldPlay: true,
             });
 
@@ -65,7 +64,7 @@ const Setup = () => {
     };
 
     const handleChangePlayersStartingLifeSelected = async (item: PlayerStartingLifeItem) => {
-        const { sound } = await Audio.Sound.createAsync(UiDigital1, {
+        const { sound } = await Audio.Sound.createAsync(UiDigitalSound, {
             shouldPlay: true,
         });
 

@@ -1,50 +1,93 @@
-# Welcome to your Expo app 👋
+# MTG Life Counter
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![Mtg Life Counter Banner](src/assets/images/banner.png)
 
-## Get started
+Um aplicativo desenvolvido em **React Native (Expo + Bare Workflow)** para auxiliar jogadores de _Magic: The Gathering_ a controlarem os pontos de vida durante suas partidas.
 
-1. Install dependencies
+## 🚀 Funcionalidades
 
-   ```bash
-   npm install
-   ```
+-   Suporte para **2 a 6 jogadores**.
+-   Alteração da **vida inicial dos jogadores** na tela de configurações (20, 25, 30 ou 40 pontos).
+-   Interface colorida e intuitiva, com um contador individual para cada jogador.
+-   Botões para adicionar ou remover pontos de vida rapidamente (-5, -1, +1, +5).
+-   Layout responsivo que se adapta automaticamente ao número de jogadores.
 
-2. Start the app
+## 📱 Screenshots
 
-   ```bash
-   npx expo start
-   ```
+| Tela de Configurações                              | Tela de Jogo (4 jogadores)                     | Tela de Jogo (2 jogadores)                      |
+| -------------------------------------------------- | ---------------------------------------------- | ----------------------------------------------- |
+| ![Configuração](src/assets/screenshots/config.png) | ![Jogo 4](src/assets/screenshots/4players.png) | ![Jogo 2](src/assets//screenshots/2players.png) |
 
-In the output, you'll find options to open the app in a
+## 🛠️ Tecnologias Utilizadas
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+-   [React Native](https://reactnative.dev/)
+-   [Expo](https://expo.dev/) (Bare Workflow)
+-   [TypeScript / JavaScript]
+-   [Expo router]
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## ⚙️ Instalação e Uso
 
-## Get a fresh project
-
-When you're ready, run:
+Clone este repositório:
 
 ```bash
-npm run reset-project
+git clone https://github.com/seu-usuario/mtg-life-counter.git
+cd mtg-life-counter
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Instale as dependências:
 
-## Learn more
+```bash
+npm install
+# ou
+yarn install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Execute o app em ambiente de desenvolvimento:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npx expo start
+```
 
-## Join the community
+Rodar no iOS ou Android:
 
-Join our community of developers creating universal apps.
+```bash
+npx expo run:ios
+npx expo run:android
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 📂 Estrutura do Projeto
+
+```bash
+mtg-life-counter/
+├── android/                # Arquivos nativos Android
+├── ios/                    # Arquivos nativos iOS
+├── assets/                 # Ícones, imagens e fontes globais
+├── scripts/                # Scripts auxiliares
+├── src/                    # Código-fonte principal
+│   ├── @types/             # Definições de tipos TypeScript
+│   ├── app/                # Configuração e entrypoint das telas
+│   ├── assets/             # Recursos usados internamente (imagens, ícones, etc.)
+│   ├── components/         # Componentes reutilizáveis
+│   ├── constants/          # Constantes do app
+│   ├── contexts/           # Context API (estado global)
+│   ├── hooks/              # Hooks customizados
+│   ├── reducers/           # Reducers para gerenciamento de estado
+│   └── styles/             # Estilos globais
+├── .expo/                  # Configurações do Expo
+├── .vscode/                # Configurações do VSCode
+├── .gitignore
+├── .prettierrc             # Configuração do Prettier
+├── app.json                # Configurações do Expo
+├── eslint.config.js        # Configuração do ESLint
+├── expo-env.d.ts           # Definições do Expo
+├── index.js                # Arquivo inicial do React Native
+├── metro.config.js         # Configuração do Metro bundler
+├── package.json
+└── README.md
+```
+
+🔮 Próximos Passos (To-do)
+
+-   Implementar suporte a contadores de veneno e energia;
+-   Customização de nomes e cores por jogador;
+-   Salvar configurações entre partidas.
