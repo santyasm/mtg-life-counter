@@ -1,9 +1,7 @@
-import { LifeCounterApp } from '@/components/LifeCounterApp';
+import { LifeCounterApp } from "../components/LifeCounterApp";
 
 const Index = () => {
-    return (
-        <LifeCounterApp />
-    );
-}
+    return <LifeCounterApp />;
+};
 
 export default Index;

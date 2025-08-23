@@ -1,10 +1,10 @@
-import { PlayersContextProvider } from "@/contexts/PlayersContext";
 import { defaultTheme } from "@/styles/themes/default";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { ThemeProvider } from "styled-components/native";
+import { PlayersContextProvider } from "../contexts/PlayersContext";
 
 export default function Layout() {
     const [loaded, error] = useFonts({

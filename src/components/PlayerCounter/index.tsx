@@ -1,9 +1,9 @@
 import { FC, useContext } from "react";
 import { Container, Content, Life, LifeContainer, ManaSymbolContainer, Name } from "./styles";
 
-import { PlayersContext } from "@/contexts/PlayersContext";
 import { Player } from "@/reducers/players/reducer";
 import { Dimensions } from "react-native";
+import { PlayersContext } from "../../contexts/PlayersContext";
 import { LifeControls } from "../LifeControls";
 import { getDynamicFontSize, getSvgManaSymbol } from "./utils";
 
@@ -54,11 +54,7 @@ export const PlayerCounter: FC<Props> = ({
             isLastPlayer={isLastPlayer}
         >
             <Content rotate={rotate} playersCount={playersCount} isLastPlayer={isLastPlayer}>
-                <LifeContainer
-                    rotate={rotate}
-                    playersCount={playersCount}
-                    isLastPlayer={isLastPlayer}
-                >
+                <LifeContainer playersCount={playersCount} isLastPlayer={isLastPlayer}>
                     <LifeControls
                         delta={1}
                         onIncrementPress={handleIncrementPress}

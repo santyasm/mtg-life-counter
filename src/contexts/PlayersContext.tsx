@@ -1,12 +1,12 @@
-import { PLAYERS } from "@/constants/Players";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createContext, FC, ReactNode, useEffect, useReducer } from "react";
+import { PLAYERS } from "../constants/Players";
 import {
     decrementPlayerLife,
     incrementPlayerLife,
     setPlayersAction,
-} from "@/reducers/players/actions";
-import { Player, playersReducer } from "@/reducers/players/reducer";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createContext, FC, ReactNode, useEffect, useReducer } from "react";
+} from "../reducers/players/actions";
+import { Player, playersReducer } from "../reducers/players/reducer";
 
 interface PlayersContextType {
     players: Player[];

@@ -1,9 +1,9 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useContext } from "react";
 
-import { PlayersContext } from "@/contexts/PlayersContext";
 import { router } from "expo-router";
 import { TouchableOpacity } from "react-native";
+import { PlayersContext } from "../../contexts/PlayersContext";
 import { PlayerCounter } from "../PlayerCounter";
 import { ActionButtonsContainer, Container, PlayersContainer } from "./styles";
 import { getGridConfig, getRotation } from "./utils";

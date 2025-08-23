@@ -2,8 +2,8 @@ import { Audio } from "expo-av";
 import * as Haptics from "expo-haptics";
 import { FC } from "react";
 
-import ButtonUiDigital from "@/assets/sounds/button-click-289742.mp3";
-import PolygonSvg from "@/assets/svgs/icons/polygon.svg";
+import ButtonUiDigital from "../../assets/sounds/button-click-289742.mp3";
+import PolygonSvg from "../../assets/svgs/icons/polygon.svg";
 import { Container, DecrementButton, Delta, IncrementButton } from "./styles";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
     onDecrementPress: (delta: number) => void;
 }
 
-export const LifeControls: FC<Props> = ({ delta, onIncrementPress, onDecrementPress }) => {
+export const LifeControls: FC<Props> = ({ delta = 1, onIncrementPress, onDecrementPress }) => {
     const SIZE_BUTTON = 30;
 
     const effect = async () => {
