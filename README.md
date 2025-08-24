@@ -22,7 +22,7 @@ Um aplicativo desenvolvido em **React Native (Expo + Bare Workflow)** para auxil
 
 -   [React Native](https://reactnative.dev/)
 -   [Expo](https://expo.dev/) (Bare Workflow)
--   [TypeScript / JavaScript]
+-   [TypeScript]
 -   [Expo router]
 
 ## ⚙️ Instalação e Uso
@@ -30,7 +30,7 @@ Um aplicativo desenvolvido em **React Native (Expo + Bare Workflow)** para auxil
 Clone este repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/mtg-life-counter.git
+git clone https://github.com/santyasm/mtg-life-counter.git
 cd mtg-life-counter
 ```
 
