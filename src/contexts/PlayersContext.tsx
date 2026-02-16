@@ -4,6 +4,8 @@ import { PLAYERS } from "../constants/Players";
 import {
     decrementPlayerLife,
     incrementPlayerLife,
+    setPlayerColor as setPlayerColorAction,
+    setPlayerName as setPlayerNameAction,
     setPlayersAction,
 } from "../reducers/players/actions";
 import { Player, playersReducer } from "../reducers/players/reducer";
@@ -13,6 +15,8 @@ interface PlayersContextType {
     incrementLife: (player: Player, delta: number) => void;
     decrementLife: (player: Player, delta: number) => void;
     setCurrentPlayers: (playersCount: number) => void;
+    setPlayerName: (player: Player, name: string) => void;
+    setPlayerColor: (player: Player, color: Player["color"]) => void;
 }
 
 export const PlayersContext = createContext<PlayersContextType>({} as PlayersContextType);
@@ -65,19 +69,38 @@ export const PlayersContextProvider: FC<PlayersContextProviderProps> = ({ childr
         dispatch(decrementPlayerLife(player, delta));
     };
 
+    const setPlayerName = (player: Player, name: string) => {
+        dispatch(
+            setPlayerNameAction({
+                ...player,
+                name,
+            }),
+        );
+    };
+
+    const setPlayerColor = (player: Player, color: Player["color"]) => {
+        dispatch(
+            setPlayerColorAction({
+                ...player,
+                color,
+            }),
+        );
+    };
+
     const setCurrentPlayers = (playersCount: number) => {
         // Garante que estamos sempre pegando os N primeiros da lista base
         const basePlayers = PLAYERS.slice(0, playersCount);
 
         // Atualiza os dados mantendo vida/nome se já existirem
         const updatedPlayers = basePlayers.map((playerFromList) => {
-            const existing = players.find((p) => p.id === playerFromList.id);
+            const existing = players.find((p: Player) => p.id === playerFromList.id);
 
             return existing
                 ? {
                       ...playerFromList,
                       life: existing.life,
                       name: existing.name,
+                      color: existing.color,
                   }
                 : playerFromList;
         });
@@ -93,6 +116,8 @@ export const PlayersContextProvider: FC<PlayersContextProviderProps> = ({ childr
                 incrementLife,
                 decrementLife,
                 setCurrentPlayers,
+                setPlayerName,
+                setPlayerColor,
             }}
         >
             {children}

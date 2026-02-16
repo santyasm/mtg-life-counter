@@ -21,6 +21,36 @@ export const playersReducer = (state: State, action: any) => {
                 players: action.payload.players,
             };
 
+        case ActionTypes.SET_PLAYER_LIFE:
+            return produce(state, (draft) => {
+                const index = draft.players.findIndex(
+                    (player) => player.id === action.payload.player.id,
+                );
+                if (index !== -1) {
+                    draft.players[index].life = action.payload.life;
+                }
+            });
+
+        case ActionTypes.SET_PLAYER_COLOR:
+            return produce(state, (draft) => {
+                const index = draft.players.findIndex(
+                    (player) => player.id === action.payload.player.id,
+                );
+                if (index !== -1) {
+                    draft.players[index].color = action.payload.player.color;
+                }
+            });
+
+        case ActionTypes.SET_PLAYER_NAME:
+            return produce(state, (draft) => {
+                const index = draft.players.findIndex(
+                    (player) => player.id === action.payload.player.id,
+                );
+                if (index !== -1) {
+                    draft.players[index].name = action.payload.player.name;
+                }
+            });
+
         case ActionTypes.INCREMENT_PLAYER_LIFE:
             return produce(state, (draft) => {
                 const index = draft.players.findIndex(

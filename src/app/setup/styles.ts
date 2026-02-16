@@ -1,3 +1,4 @@
+import { defaultTheme } from "@/styles/themes/default";
 import { getBottomSpace, getStatusBarHeight } from "react-native-iphone-screen-helper";
 import { styled } from "styled-components/native";
 
@@ -95,4 +96,49 @@ export const Footer = styled.View`
     bottom: 0;
     width: 100%;
     padding: 0 24px ${getBottomSpace() + 32}px 24px;
+`;
+
+export const PlayersCustomizationContainer = styled.View`
+    margin-top: 32px;
+    gap: 16px;
+    padding: 0 24px;
+`;
+
+export const PlayerRow = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+`;
+
+export const NameInput = styled.TextInput`
+    flex: 1;
+    height: 44px;
+    border-radius: 6px;
+    padding: 0 12px;
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.darkGray};
+    font-family: "Roboto Mono";
+    font-size: 16px;
+`;
+
+export const ColorOptionsRow = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+`;
+
+export const ColorOption = styled.TouchableOpacity<{
+    isSelected: boolean;
+    colorName: keyof typeof defaultTheme.colors.manaSymbols;
+}>`
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    align-items: center;
+    justify-content: center;
+    background-color: ${({ theme, colorName }) => theme.colors.manaSymbols[colorName]};
+    border-width: ${({ isSelected }) => (isSelected ? "2px" : "0px")};
+    border-color: ${({ theme }) => theme.colors.white};
 `;
